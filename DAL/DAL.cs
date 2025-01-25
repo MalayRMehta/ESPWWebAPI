@@ -1,15 +1,15 @@
 ﻿using System.Data.SqlClient;
-using ESPWWebAPI.Model;
 namespace ESPWWebAPI.DAL
 {
 	public class DAL
 	{
 		public List<ClientInfo> listClients = new List<ClientInfo>();
 
-		public void OnGet()
+		public List<ClientInfo> OnGet()
 		{
 			try
 			{
+
 				String connectionString = "Data Source=.\\sqlexpress;Initial Catalog=AberInstruments;Integrated Security=True;";
 				using (SqlConnection connection = new SqlConnection(connectionString))
 				{
@@ -34,10 +34,12 @@ namespace ESPWWebAPI.DAL
 						}
 					}
 				}
+				return listClients;
 			}
 			catch (Exception ex)
 			{
 				Console.WriteLine("Exception " + ex.ToString());
+				return null;
 			}
 		}
 

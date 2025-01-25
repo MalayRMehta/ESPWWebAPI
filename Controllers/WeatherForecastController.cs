@@ -1,15 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
-
+using ESPWWebAPI.DAL;
 namespace ESPWWebAPI.Controllers
 {
 	[ApiController]
 	[Route("[controller]")]
 	public class WeatherForecastController : ControllerBase
 	{
-		private static readonly string[] Summaries = new[]
-		{
-		"Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-	};
 
 
 
@@ -22,15 +18,11 @@ namespace ESPWWebAPI.Controllers
 		}
 
 		[HttpGet]
-		public IEnumerable<WeatherForecast> Get()
+		public IActionResult Get()
 		{
-			return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-			{
-				Date = DateTime.Now.AddDays(index),
-				TemperatureC = Random.Shared.Next(-20, 55),
-				Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-			})
-			.ToArray();
+			DAL.DAL objDAL = new DAL.DAL();
+			var result = objDAL.OnGet();			
+			return Ok(result);
 		}
 	}
 }
