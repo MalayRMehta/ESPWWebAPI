@@ -44,5 +44,38 @@ namespace ESPWWebAPI.DAL
 		}
 
 
+		public bool OnPost(ClientInfo clientInfo)
+		{
+			try
+			{
+				String connectionString = "Data Source=.\\sqlexpress;Initial Catalog=AberInstruments;Integrated Security=True";
+				using (SqlConnection connection = new SqlConnection(connectionString))
+				{
+					connection.Open();
+					String sql = "INSERT INTO clients " +
+								 "(name,doses,time,mass) VALUES " +
+								 "(@name,@doses,@time,@mass);";
+
+					using (SqlCommand command = new SqlCommand(sql, connection))
+					{
+						command.Parameters.AddWithValue("@name", clientInfo.name);
+						command.Parameters.AddWithValue("@doses", clientInfo.doses);
+						command.Parameters.AddWithValue("@time", clientInfo.time);
+						command.Parameters.AddWithValue("@mass", clientInfo.mass);
+
+						var result = command.ExecuteNonQuery();
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				return false;
+			}
+
+
+			return true;
+
+		}
+
 	}
 }

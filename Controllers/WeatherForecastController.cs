@@ -24,5 +24,14 @@ namespace ESPWWebAPI.Controllers
 			var result = objDAL.OnGet();			
 			return Ok(result);
 		}
+
+
+		[HttpPost]
+		public IActionResult Post(ClientInfo clientInfo)
+		{
+			DAL.DAL objDAL = new DAL.DAL();
+			var result = objDAL.OnPost(clientInfo);
+			return Ok(result);
+		}
 	}
 }
