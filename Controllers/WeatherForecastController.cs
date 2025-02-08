@@ -37,11 +37,12 @@ namespace ESPWWebAPI.Controllers
 			// Parameters to include in the POST request
 			var parameters = new Dictionary<string, string>
 	 	{
-	 		{ "input1", "1" },
-	 		{ "input2", "1" },
-	 		{ "input3", "2"},
+	 		{ "input1", clientInfo.doses.ToString() },
+	 		{ "input2", clientInfo.mass.ToString() },
+	 		{ "input3", clientInfo.time.ToString()},
 	 		{ "input4", "4"}
 	 	};
+
 
 			// 		// Create an instance of the HttpService class
 			var httpService = new HttpService();
