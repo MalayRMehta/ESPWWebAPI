@@ -20,7 +20,7 @@ namespace ESPWWebAPI.Controllers
 		 	DAL.DAL objDAL = new DAL.DAL();
 		 	var result = objDAL.OnGet();			
 		 	return Ok(result);
-		 }
+		 } 
 
 
 
