@@ -28,6 +28,7 @@ namespace ESPWWebAPI.Controllers
 		public async void Post(ClientInfo clientInfo)
 		{		
 			//passing parameters in query string
+			//Change URL with ESP-32
 			string apiUrl = "http://192.168.4.1/get?input1=" + clientInfo.doses.ToString()  + "&input2="+ clientInfo.mass.ToString() + "&input3="+ clientInfo.time.ToString() + "&input4=1";
 
 			using (HttpClient client = new HttpClient())
